@@ -12,6 +12,7 @@ in
     mupdf
     pass
     pavucontrol
+    pinentry.qt
     rtv
     spotify
     xmobar
@@ -74,6 +75,11 @@ in
     enable = true;
     enableSshSupport = true;
     sshKeys = ["8D9342B7F994DE2B879A03F4CF270B470301BE9C"];
+    extraConfig = ''
+    allow-emacs-pinentry
+    allow-loopback-pinentry
+    pinentry-program ${pkgs.pinentry.qt}/bin/pinentry
+    '';
   };
 
   systemd.user.services.dropbox = {
