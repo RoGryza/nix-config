@@ -8,6 +8,7 @@ in
   home.packages = with pkgs; [
     dropbox
     fasd
+    hledger
     mupdf
     pass
     pavucontrol
