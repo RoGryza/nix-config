@@ -32,6 +32,21 @@
   nix.maxJobs = lib.mkDefault 4;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
+  services.xserver.xrandrHeads = [
+    {
+      output = "eDP-1";
+      monitorConfig = ''
+      Option "DPMS" "false"
+      '';
+    }
+    {
+      output = "HDMI-1";
+      monitorConfig = ''
+      Option "DPMS" "false"
+      '';
+    }
+  ];
+
   # services.xserver.videoDrivers = [ "intel" "nvidiaLegacy340" ];
   # hardware.nvidia.optimus_prime.enable = true;
   # hardware.nvidia.optimus_prime.nvidiaBusId = "PCI:8:0:0";
