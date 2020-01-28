@@ -1,5 +1,6 @@
 {
   hostname = "rogryza-wuzu";
+  hashedPassword = "$6$c/obJGjdZ0$Uv9ned1qruxx1mHSBj.tqijqlizJSrUKuIzy/a4aHxz2ZKTVukGJpntm/89la1quSsfl2dyKGu6dRyD495dkK.";
   keymap = "us";
   layout = "us";
   sshKeyGrips = ["8928FD39BEAEC469EDE06393D93637E09DA37593"];

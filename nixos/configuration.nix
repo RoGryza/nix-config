@@ -91,10 +91,14 @@ in
   # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager.startx.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.mutableUsers = false;
+  users.groups.rogryza.gid = 1000;
   users.users.rogryza = {
+    uid = 1000;
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    group = "rogryza";
+    hashedPassword = meta.hashedPassword;
+    extraGroups = [ "users" "wheel" "networkmanager" ];
     shell = pkgs.zsh;
   };
 
