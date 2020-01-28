@@ -74,7 +74,7 @@ in
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    sshKeys = ["8D9342B7F994DE2B879A03F4CF270B470301BE9C"];
+    sshKeys = meta.sshKeyGrips;
     extraConfig = ''
     allow-emacs-pinentry
     allow-loopback-pinentry
