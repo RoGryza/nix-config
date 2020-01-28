@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   meta = import /etc/nixos/meta.nix;
 in
@@ -21,8 +21,8 @@ in
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp7s0.useDHCP = true;
-  networking.interfaces.wlp6s0.useDHCP = true;
+  networking.interfaces = lib.attrsets.genAttrs meta.networkInterfaces
+    (name: { useDHCP = true; });
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
