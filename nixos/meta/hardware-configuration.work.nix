@@ -29,4 +29,17 @@
 
   nix.maxJobs = lib.mkDefault 4;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  services.xserver.xrandrHeads = [
+    {
+      output = "DP-1";
+      primary = true;
+      monitorConfig = ''
+      Option "LeftOf" "HDMI-1"
+      '';
+    }
+    {
+      output = "HDMI-1";
+    }
+  ];
 }
