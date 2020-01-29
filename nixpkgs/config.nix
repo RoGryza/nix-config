@@ -10,9 +10,7 @@
 
       bin = writeScript "screenshot.sh" ''
       #!${bash}/bin/bash
-      TMP=$(mktemp)
-      ${scrot}/bin/scrot -fs $TMP
-      ${xclip}/bin/xclip -selection c -t image/png -i $TMP
+      ${scrot}/bin/scrot -fs
       '';
 
       desktopItem = makeDesktopItem {
