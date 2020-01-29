@@ -18,6 +18,13 @@ in
     xmobar
   ];
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+  services.lorri.enable = true;
+
   programs.command-not-found.enable = true;
 
   programs.zsh = {
