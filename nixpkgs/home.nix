@@ -14,6 +14,7 @@ in
     pavucontrol
     pinentry.qt
     rtv
+    screenshot
     spotify
     xmobar
   ];
