@@ -47,6 +47,8 @@ in
     pciutils
     bat fd lsd ripgrep zsh jq yq
     imagemagick p7zip
+    # Need to get rid of these
+    isync mu
   ];
   environment.pathsToLink = [ "/share/zsh" ];
   security.wrappers.slock.source = "${pkgs.slock.out}/bin/slock";
