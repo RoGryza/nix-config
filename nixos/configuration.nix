@@ -51,6 +51,8 @@ in
   environment.pathsToLink = [ "/share/zsh" ];
   security.wrappers.slock.source = "${pkgs.slock.out}/bin/slock";
 
+  virtualisation.docker.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -100,7 +102,7 @@ in
     isNormalUser = true;
     group = "rogryza";
     hashedPassword = meta.hashedPassword;
-    extraGroups = [ "users" "wheel" "networkmanager" ];
+    extraGroups = [ "users" "wheel" "networkmanager" "docker" ];
     shell = pkgs.zsh;
   };
 
