@@ -42,13 +42,21 @@ in
       xp = "xclip -selection p";
       xpo = "xclip -selection p -o";
     };
-    initExtra = "
-    PROMPT=\"%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%} %{$fg_bold[green]%}%~%{$reset_color%}$(git_prompt_info)> \"
+    initExtra = ''
+    autoload -U compinit && compinit
+    autoload -Uz promptinit && promptinit
+
+    function custom_prompt() {
+      echo "$CUSTOM_PS1";
+    }
+
+    CUSTOM_PS1='> '
+    PROMPT="%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%} %{$fg_bold[green]%}%~%{$reset_color%} $(git_prompt_info)"$'\n'"$(custom_prompt)"
 
     # Don't stop output with ^S
     stty stop undef
     stty start undef
-    ";
+    '';
     profileExtra = "
     export EDITOR='emacsclient --alternate-editor=vim'
     export SUDO_EDITOR=\"$EDITOR\"
@@ -61,6 +69,7 @@ in
         "cargo"
         "colorize"
         "docker"
+        "kubectl"
         "fasd"
         "pass"
         "git"
