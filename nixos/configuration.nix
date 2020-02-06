@@ -7,6 +7,8 @@ let
   meta = import /etc/nixos/meta.nix;
 in
 {
+  nixpkgs.config.allowUnfree = true;
+
   imports = meta.extraImports;
 
   # Use the systemd-boot EFI boot loader.
