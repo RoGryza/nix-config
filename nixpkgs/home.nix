@@ -145,7 +145,13 @@ in
     extraConfig = builtins.readFile ./lib/tmux.conf;
   };
 
-  programs.rofi.enable = true;
+  programs.rofi = {
+    enable = true;
+    cycle = true;
+    scrollbar = false;
+    terminal = "alacritty";
+    theme = "fancy";
+  };
 
   xsession = {
     enable = true;
