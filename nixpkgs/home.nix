@@ -17,6 +17,7 @@ in
     screenshot
     spotify
     xmobar
+    nodePackages.wflow
   ];
 
   programs.direnv = {
