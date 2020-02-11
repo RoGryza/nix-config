@@ -41,6 +41,7 @@ in
       tree = "lsd --tree";
       xp = "xclip -selection p";
       xpo = "xclip -selection p -o";
+      sbcl = "rlwrap sbcl";
     };
     initExtra = ''
     autoload -U compinit && compinit
@@ -173,6 +174,11 @@ in
       source = ./lib/xinitrc;
       target = ".xinitrc";
       executable = true;
+    };
+
+    direnvrc = {
+      source = ./lib/direnvrc;
+      target = ".direnvrc";
     };
   };
 }
