@@ -44,7 +44,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget vim firefox emacs networkmanager
-    xclip autocutsel slock tmux
+    xclip autocutsel libnotify slock tmux
     cmake gnumake
     pciutils
     bat fd lsd ripgrep zsh jq yq
@@ -57,32 +57,14 @@ in
 
   virtualisation.docker.enable = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  #   pinentryFlavor = "gnome3";
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  services.earlyoom = {
+    enable = true;
+    notificationsCommand = "sudo -u rogryza DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send";
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
