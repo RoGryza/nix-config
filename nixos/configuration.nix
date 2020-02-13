@@ -38,6 +38,8 @@ in
   security.wrappers.slock.source = "${pkgs.slock.out}/bin/slock";
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
+  networking.firewall.checkReversePath = false;
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -63,7 +65,7 @@ in
     isNormalUser = true;
     group = "rogryza";
     hashedPassword = meta.hashedPassword;
-    extraGroups = [ "users" "wheel" "networkmanager" "docker" ];
+    extraGroups = [ "users" "wheel" "networkmanager" "docker" "libvirtd" ];
     shell = pkgs.zsh;
   };
 
