@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, lib, ... }:
 let
   meta = import /etc/nixos/meta.nix;
@@ -11,37 +7,23 @@ in
 
   imports = meta.extraImports;
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = meta.hostname;
   networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces = lib.attrsets.genAttrs meta.networkInterfaces
     (name: { useDHCP = true; });
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     keyMap = meta.keymap;
   };
-
-  # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget vim firefox emacs networkmanager
     xclip autocutsel libnotify slock tmux
@@ -57,7 +39,6 @@ in
 
   virtualisation.docker.enable = true;
 
-  # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
@@ -66,19 +47,13 @@ in
     notificationsCommand = "sudo -u rogryza DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send";
   };
 
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = meta.xkb.layout;
   services.xserver.xkbVariant = meta.xkb.variant;
   services.xserver.xkbOptions = "grp:caps_toggle";
-  # services.xserver.xkbOptions = "eurosign:e";
 
-  # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager.startx.enable = true;
 
   users.mutableUsers = false;
@@ -96,12 +71,5 @@ in
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
   hardware.pulseaudio.support32Bit = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.03"; # Did you read the comment?
+  system.stateVersion = "20.03";
 }
-
