@@ -2,7 +2,7 @@
   allowUnfree = true;
 
   packageOverrides = pkgs: with pkgs; {
-    xmonad = import ./modules/xmonad;
+    rogryza-xmonad = import ./modules/xmonad;
 
     screenshot = stdenv.mkDerivation rec {
       name = "screenshot";

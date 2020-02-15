@@ -17,6 +17,7 @@ in
     screenshot
     spotify
     xmobar
+    rogryza-xmonad
     nodePackages.wflow
   ];
 
@@ -157,7 +158,7 @@ in
 
   xsession = {
     enable = true;
-    windowManager.xmonad.enable = true;
+    windowManager.command = "${pkgs.rogryza-xmonad}/bin/rogryza-xmonad";
   };
 
   home.file = {
