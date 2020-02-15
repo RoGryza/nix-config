@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   meta = import /etc/nixos/meta.nix;
@@ -160,14 +160,14 @@ in
     windowManager = {
       xmonad = {
         enable = true;
-        extraPackages = hpkgs: with hpkgs; [
-          xmonad-contrib
-          xmonad-extras
-        ];
         enableContribAndExtras = true;
-        config = ./lib/xmonad.hs;
+        config = ./lib/xmonad/xmonad.hs;
       };
     };
+  };
+  home.file.".xmonad/lib" = {
+    source = ./lib/xmonad/lib;
+    onChange = config.home.file.".xmonad/xmonad.hs".onChange;
   };
 
   home.file = {
