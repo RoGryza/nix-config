@@ -2,6 +2,8 @@
   allowUnfree = true;
 
   packageOverrides = pkgs: with pkgs; {
+    xmonad = import ./modules/xmonad;
+
     screenshot = stdenv.mkDerivation rec {
       name = "screenshot";
       unpackPhase= "true";

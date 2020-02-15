@@ -157,29 +157,15 @@ in
 
   xsession = {
     enable = true;
-    windowManager = {
-      xmonad = {
-        enable = true;
-        enableContribAndExtras = true;
-        config = ./lib/xmonad/xmonad.hs;
-      };
-    };
-  };
-  home.file.".xmonad/lib" = {
-    source = ./lib/xmonad/lib;
-    onChange = config.home.file.".xmonad/xmonad.hs".onChange;
+    windowManager.xmonad.enable = true;
   };
 
   home.file = {
-    xinitrc = {
-      source = ./lib/xinitrc;
-      target = ".xinitrc";
-      executable = true;
-    };
+    ".xinitrc".source = ./lib/xinitrc;
+    ".xinitrc".executable = true;
 
-    direnvrc = {
-      source = ./lib/direnvrc;
-      target = ".direnvrc";
-    };
+    ".direnvrc".source = ./lib/direnvrc;
+
+    ".cabal/config".source = pkgs.writeText "config" "nix: True\n";
   };
 }
