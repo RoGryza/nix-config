@@ -28,4 +28,6 @@ layout_poetry() {
   export VIRTUAL_ENV=$(echo "$VENV" | rev | cut -d'/' -f2- | rev)
   export POETRY_ACTIVE=1
   PATH_add "$VENV"
+  path_add PYTHONPATH "$(realpath .)"
+  export PYTHONPATH
 }
