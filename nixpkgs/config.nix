@@ -12,7 +12,8 @@
 
       bin = writeScript "screenshot.sh" ''
       #!${bash}/bin/bash
-      ${scrot}/bin/scrot -fs
+      copy_and_delete='sh -c "xclip -selection clipboard -t image/png -i $f; rm $f"'
+      ${scrot}/bin/scrot --silent --select --freeze -e "$copy_and_delete"
       '';
 
       desktopItem = makeDesktopItem {
