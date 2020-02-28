@@ -46,7 +46,7 @@ in
 
   services.earlyoom = {
     enable = true;
-    notificationsCommand = "sudo -u rogryza DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send";
+    notificationsCommand = "sudo -u rogryza DISPLAY=:0 notify-send";
   };
 
   services.xserver.enable = true;
