@@ -7,6 +7,7 @@ in
 {
   home.packages = with pkgs; [
     dropbox
+    dunst
     fasd
     hledger
     mupdf
@@ -168,5 +169,10 @@ in
     ".direnvrc".source = ./lib/direnvrc;
 
     ".cabal/config".source = pkgs.writeText "config" "nix: True\n";
+  };
+
+  xdg.configFile.dunst = {
+    source = ./lib/dunst;
+    recursive = true;
   };
 }

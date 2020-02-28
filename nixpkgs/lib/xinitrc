@@ -5,6 +5,7 @@ xrdb -merge $HOME/.Xresources
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
 eval `dbus-launch --auto-syntax`
+systemctl --user import-environment DISPLAY
 
 # {{{ Log settings
 errorlog="$HOME/.xsession-errors"
