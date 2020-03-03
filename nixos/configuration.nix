@@ -18,10 +18,8 @@ in
     (name: { useDHCP = true; });
 
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = meta.keymap;
-  };
+  i18n.consoleFont = "Lat2-Terminus16";
+  i18n.consoleKeyMap = meta.keymap;
   time.timeZone = "America/Sao_Paulo";
 
   environment.systemPackages = with pkgs; [
