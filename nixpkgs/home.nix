@@ -5,6 +5,8 @@ let
 in
 
 {
+  imports = [ ./modules/x11.nix ];
+
   home.packages = with pkgs; [
     dropbox
     dunst
@@ -13,12 +15,10 @@ in
     mupdf
     pass
     pavucontrol
-    pinentry.qt
+    pinentry_qt5
     rtv
     screenshot
     spotify
-    xmobar
-    rogryza-xmonad
     nodePackages.wflow
   ];
 
@@ -99,7 +99,7 @@ in
     extraConfig = ''
     allow-emacs-pinentry
     allow-loopback-pinentry
-    pinentry-program ${pkgs.pinentry.qt}/bin/pinentry
+    pinentry-program ${pkgs.pinentry_qt5}/bin/pinentry
     '';
   };
 
@@ -156,16 +156,7 @@ in
     terminal = "alacritty";
     theme = "fancy";
   };
-
-  xsession = {
-    enable = true;
-    windowManager.command = "${pkgs.rogryza-xmonad}/bin/rogryza-xmonad";
-  };
-
   home.file = {
-    ".xinitrc".source = ./lib/xinitrc;
-    ".xinitrc".executable = true;
-
     ".direnvrc".source = ./lib/direnvrc;
 
     ".cabal/config".source = pkgs.writeText "config" "nix: True\n";
