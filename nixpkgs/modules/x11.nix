@@ -1,33 +1,35 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+with lib;
 {
-  home.packages = [ pkgs.qtile ];
+  imports = [ ./qtile ];
 
-  xsession = {
-    enable = true;
-    windowManager.command = "${pkgs.qtile}/bin/qtile";
+  options.xsession = {
+    autoStartServices = mkOption {
+      type = types.listOf types.str;
+      default = [];
+    };
   };
 
-  home.file.".xinitrc".text = ''
-      xsetroot -cursor_name left_ptr
-      (xrandr --listproviders | grep --quiet NVIDIA-0) && xrandr –setprovideroutputsource modesetting NVIDIA-0
-      xrandr --auto
-      autocutsel -fork &
-      autocutsel -selection PRIMARY -fork &
-      eval `dbus-launch --auto-syntax`
-      systemctl --user import-environment DISPLAY
+  config = {
+    home.packages = [ pkgs.qtile ];
 
-      errorlog="$HOME/.xsession-errors"
+    home.file.".xinitrc".text = ''
+        xsetroot -cursor_name left_ptr
+        (xrandr --listproviders | grep --quiet NVIDIA-0) && xrandr –setprovideroutputsource modesetting NVIDIA-0
+        xrandr --auto
+        autocutsel -fork &
+        autocutsel -selection PRIMARY -fork &
+        eval `dbus-launch --auto-syntax`
+        systemctl --user import-environment DISPLAY
 
-      # Start with a clean log file every time
-      if ( cp /dev/null "$errorlog" 2> /dev/null ); then
-          chmod 600 "$errorlog"
-          ${config.xsession.windowManager.command} > "$errorlog" 2>&1
-      fi
-  '';
-  home.file.".xinitrc".executable = true;
+        errorlog="$HOME/.xsession-errors"
 
-  xdg.configFile.qtile = {
-    source = ../lib/qtile;
-    recursive = true;
+        # Start with a clean log file every time
+        if ( cp /dev/null "$errorlog" 2> /dev/null ); then
+            chmod 600 "$errorlog"
+            ${config.xsession.windowManager.command} > "$errorlog" 2>&1
+        fi
+    '';
+    home.file.".xinitrc".executable = true;
   };
 }

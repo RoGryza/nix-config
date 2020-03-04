@@ -5,10 +5,11 @@ let
 in
 
 {
-  imports = [ ./modules/x11.nix ];
+  imports = [ ./modules/x11.nix
+              ./modules/dropbox.nix
+            ];
 
   home.packages = with pkgs; [
-    dropbox
     dunst
     fasd
     hledger
@@ -30,6 +31,8 @@ in
   services.lorri.enable = true;
 
   programs.command-not-found.enable = true;
+
+  xsession.windowManager.qtile.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -101,25 +104,6 @@ in
     allow-loopback-pinentry
     pinentry-program ${pkgs.pinentry_qt5}/bin/pinentry
     '';
-  };
-
-  systemd.user.services.dropbox = {
-    Unit = {
-      Description = "Dropbox";
-      After = [ "graphical-session-pre.target" ];
-      PartOf = [ "graphical-session.target" ];
-    };
-
-    Service = {
-      Restart = "on-failure";
-      RestartSec = 1;
-      ExecStart = "${pkgs.dropbox}/bin/dropbox";
-      Environment = "QT_PLUGIN_PATH=/run/current-system/sw/${pkgs.qt5.qtbase.qtPluginPrefix}";
-    };
-
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
   };
 
   programs.emacs.enable = true;

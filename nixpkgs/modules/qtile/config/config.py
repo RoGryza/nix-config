@@ -1,10 +1,26 @@
+import os
+import os.path
+import subprocess
+
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget
+from libqtile import hook, layout, bar, widget
 
 from typing import List  # noqa: F401
 
 mod = "mod4"
+
+CFG_PATH=os.environ["QTILE_CFG_PATH"]
+
+@hook.subscribe.startup
+def autostart_services():
+    autostart = []
+    with open(os.path.join(CFG_PATH, "autostart")) as f, open(os.path.expanduser("~/autostart"), "w") as g:
+        for ln in f:
+            autostart.append(ln)
+            g.write(f"{ln}\n")
+    for unit in autostart:
+        subprocess.call(["systemctl", "--user", "restart", unit])
 
 keys = [
     Key([mod], "k", lazy.layout.down()),
