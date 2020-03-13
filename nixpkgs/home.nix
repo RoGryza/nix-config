@@ -7,6 +7,7 @@ in
 {
   imports = [ ./modules/x11.nix
               ./modules/dropbox.nix
+              ./modules/vim
             ];
 
   home.packages = with pkgs; [
