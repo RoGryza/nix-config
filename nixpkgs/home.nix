@@ -18,6 +18,7 @@ in
     pavucontrol
     pinentry_qt5
     rtv
+    rust-analyzer
     screenshot
     spotify
     nodePackages.wflow
