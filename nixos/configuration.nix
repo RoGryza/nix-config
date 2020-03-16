@@ -5,7 +5,7 @@ in
 {
   nixpkgs.config.allowUnfree = true;
 
-  imports = meta.extraImports;
+  imports = meta.extraImports ++ [./modules/zen-kernel.nix];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -17,6 +17,7 @@ fi
 if [ ! -f /etc/nixos/meta.nix ]; then
   [ -f /etc/nixos/configuration.nix ] && sudo mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.old
   sudo ln -s "$(realpath nixos/configuration.nix)" /etc/nixos/configuration.nix
+  sudo ln -s "$(realpath nixos/modules)" /etc/nixos/modules
   sudo ln -s "$(realpath nixos/meta)" /etc/nixos/meta
   sudo ln -s "$(realpath nixos/meta/$META.nix)" /etc/nixos/meta.nix
 fi

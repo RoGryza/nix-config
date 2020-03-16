@@ -14,7 +14,6 @@
   };
   extraImports = [
     ./hardware-configuration.work.nix
-    ../modules/virtualbox.nix
   ];
   networkInterfaces = ["enp3s0"];
 }
