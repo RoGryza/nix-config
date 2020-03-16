@@ -33,6 +33,7 @@ in
   services.lorri.enable = true;
 
   programs.command-not-found.enable = true;
+  programs.neovim.enable = true;
 
   xsession.windowManager.my-dwm.enable = true;
   xresources.extraConfig = builtins.readFile (
