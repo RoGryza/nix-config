@@ -19,7 +19,7 @@ in
     dontUnpack = true;
 
     installPhase = ''
-      install -m755 -D $src $out/bin/rust-analyzer
+      install -m755 -D $src $out/bin/ra_lsp_server
     '';
   };
 }
