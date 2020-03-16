@@ -35,6 +35,14 @@ in
   programs.command-not-found.enable = true;
 
   xsession.windowManager.my-dwm.enable = true;
+  xresources.extraConfig = builtins.readFile (
+    pkgs.fetchFromGitHub {
+      owner = "dracula";
+      repo = "xresources";
+      rev = "master";
+      sha256 = "12wmjynk0ryxgwb0hg4kvhhf886yvjzkp96a5bi9j0ryf3pc9kx7";
+    } + "/Xresources"
+  );
 
   programs.zsh = {
     enable = true;

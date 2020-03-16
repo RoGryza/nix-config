@@ -62,6 +62,10 @@ with lib;
           (svc: "(sleep 3 && systemctl restart ${svc})&")
           config.xsession.autoStartServices}
 
+        if [ -f "~/.Xresources" ]; then
+          xrdb merge ~/.Xresources
+        fi
+
         # Start with a clean log file every time
         if ( cp /dev/null "$errorlog" 2> /dev/null ); then
             chmod 600 "$errorlog"
