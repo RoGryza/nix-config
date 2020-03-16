@@ -118,13 +118,6 @@ in
     signing.signByDefault = true;
   } // meta.git;
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      env = { TERM = "xterm-256color"; };
-    };
-  };
-
   programs.tmux = {
     enable = true;
     plugins = with pkgs.tmuxPlugins; [
@@ -139,7 +132,7 @@ in
     enable = true;
     cycle = true;
     scrollbar = false;
-    terminal = "alacritty";
+    terminal = config.xsession.cmds.terminal;
     theme = "fancy";
   };
   home.file = {

@@ -20,7 +20,7 @@ with lib;
 
       terminal = mkOption {
         type = types.str;
-        default = "${pkgs.alacritty}/bin/alacritty";
+        default = "${pkgs.st}/bin/st";
       };
 
       lock = mkOption {
@@ -46,6 +46,7 @@ with lib;
   };
 
   config = {
+    home.packages = [pkgs.st];
     home.file.".xinitrc".text = ''
         xsetroot -cursor_name left_ptr
         (xrandr --listproviders | grep --quiet NVIDIA-0) && xrandr –setprovideroutputsource modesetting NVIDIA-0
