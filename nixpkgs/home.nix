@@ -34,7 +34,7 @@ in
 
   programs.command-not-found.enable = true;
 
-  xsession.windowManager.qtile.enable = true;
+  xsession.windowManager.my-dwm.enable = true;
 
   programs.zsh = {
     enable = true;
