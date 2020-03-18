@@ -25,6 +25,9 @@ in
     nodePackages.wflow
   ];
 
+  programs.home-manager.enable = true;
+  home.stateVersion = "19.09";
+
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
