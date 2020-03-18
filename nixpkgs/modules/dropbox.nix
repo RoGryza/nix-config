@@ -1,18 +1,23 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
+with lib;
 {
-  home.packages = [ pkgs.dropbox ];
+  options.services.dropbox.enable = mkEnableOption "enable";
 
-  xsession.autoStartServices = ["dropbox"];
-  systemd.user.services.dropbox = {
-    Unit = {
-      Description = "Dropbox";
-    };
+  config = mkIf config.services.dropbox.enable {
+    home.packages = [ pkgs.dropbox ];
 
-    Service = {
-      Restart = "on-failure";
-      RestartSec = 1;
-      ExecStart = "${pkgs.dropbox}/bin/dropbox";
-      Environment = "QT_PLUGIN_PATH=/run/current-system/sw/${pkgs.qt5.qtbase.qtPluginPrefix}";
+    xsession.autoStartServices = ["dropbox"];
+    systemd.user.services.dropbox = {
+      Unit = {
+        Description = "Dropbox";
+      };
+
+      Service = {
+        Restart = "on-failure";
+        RestartSec = 1;
+        ExecStart = "${pkgs.dropbox}/bin/dropbox";
+        Environment = "QT_PLUGIN_PATH=/run/current-system/sw/${pkgs.qt5.qtbase.qtPluginPrefix}";
+      };
     };
   };
 }

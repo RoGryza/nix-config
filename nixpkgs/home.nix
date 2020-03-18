@@ -5,7 +5,8 @@ let
 in
 
 {
-  imports = [ ./modules/x11.nix
+  imports = [ ./modules/programs.nix
+              ./modules/x11.nix
               ./modules/dropbox.nix
               ./modules/vim
             ];
@@ -15,14 +16,12 @@ in
     fasd
     hledger
     mupdf
-    pass
     pavucontrol
     pinentry_qt5
     rtv
     rust-analyzer
     screenshot
     spotify
-    nodePackages.wflow
   ];
 
   programs.home-manager.enable = true;
@@ -36,7 +35,13 @@ in
   services.lorri.enable = true;
 
   programs.command-not-found.enable = true;
+  programs.firefox.enable = true;
   programs.neovim.enable = true;
+  programs.pass.enable = true;
+  programs.st.enable = true;
+  programs.slock.enable = true;
+
+  services.dropbox.enable = false;
 
   xsession.windowManager.my-dwm.enable = true;
   xresources.extraConfig = builtins.readFile (
@@ -119,11 +124,6 @@ in
     pinentry-program ${pkgs.pinentry_qt5}/bin/pinentry
     '';
   };
-
-  programs.emacs.enable = true;
-  services.emacs.enable = true;
-
-  programs.firefox.enable = true;
 
   programs.git = {
     enable = true;

@@ -77,7 +77,3 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader><space> :nohlsearch<CR>
 
 nnoremap <space> za
-
-augroup startup
-  au! VimEnter * call MyInit()
-augroup end
