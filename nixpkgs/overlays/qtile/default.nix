@@ -8,12 +8,12 @@ let
 in
 
 {
-  cairocffi = python37Packages.cairocffi.overrideAttrs {
+  cairocffi = python37Packages.cairocffi.overrideAttrs (_: {
     patchPhase = ''
       # Hardcode cairo library path
       sed -e 's,ffi\.dlopen(,&"${pkgs.cairo}/lib/" + ,' -i cairocffi/__init__.py
     '';
-  };
+  });
 
   qtile = python37Packages.buildPythonPackage {
     inherit (super.qtile) meta;

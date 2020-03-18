@@ -17,6 +17,8 @@ with lib;
 
   imports = [
     ./lib/nix.vim
+    ./lib/lsp.vim
+    ./lib/python.vim
   ];
 
   config = mkIf config.programs.neovim.enable {

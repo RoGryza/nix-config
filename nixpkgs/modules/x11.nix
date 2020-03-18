@@ -2,7 +2,6 @@
 with lib;
 {
   imports = [
-    ./qtile
     ./dwm
   ];
 
